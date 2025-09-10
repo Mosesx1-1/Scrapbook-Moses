@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading Scrapbook</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+	<Style>
+	 body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fffdd0;
+      font-family: serif;
+    }
+    .loader {
+      text-align: center;
+    }
+   .loading-text {
+      margin-top: 1px;
+      font-size: 30px;
+      color: #444;
+    }
+     .emoji {
+      font-size: 500px;
+      animation: bounce 1s infinite;
+    }
+   @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    .progress {
+      margin-top: 10px;
+      height: 30px;
+      border-radius: 50px;
+    }
+
+</Style>
+</head>
+<Body>
+<div class="loader">
+    <div class="emoji">👾</div>
+    <div class="loading-text">Moses x-1</div>
+    <div class="progress w-75 mx-auto">
+      <div id="progressBar" 
+           class="progress-bar progress-bar-striped progress-bar-animated bg-warning" 
+           role="progressbar" style="width: 0%">0%</div>
+    </div>
+  </div>
+
+	<Script>   let progress = 0;
+    const progressBar = document.getElementById("progressBar");
+    const duration = 15000; 
+    const interval = 250;   
+    const step = 100 / (duration / interval);
+    const timer = setInterval(() => {
+      progress += step;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(timer);
+        // setelah selesai, redirect ke home.html
+        window.location.href = "home.html"; }
+      progressBar.style.width = progress + "%";
+      progressBar.innerText = Math.floor(progress) + "%";  }, interval);
+        const emojiList = ["👾", "🚀", "👽", "🤖", "🛸", "🧠"];
+    const emojiEl = document.querySelector(".emoji");
+    let currentEmoji = 0;
+    emojiEl.addEventListener("animationiteration", () => {
+      currentEmoji = (currentEmoji + 1) % emojiList.length;
+      emojiEl.textContent = emojiList[currentEmoji];
+    });
+
+ </Script>
+</body>
+</html>
